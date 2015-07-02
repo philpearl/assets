@@ -1,11 +1,15 @@
 # Assets
+[![Build Status](https://travis-ci.org/philpearl/assets.svg)](https://travis-ci.org/philpearl/assets) [![GoDoc](https://godoc.org/github.com/philpearl/assets?status.svg)](https://godoc.org/github.com/philpearl/assets)
+
 
 - Keep different versions of .js and .css files live on your site
 - Automatically generate versioned names for static files in your templates
 - Serve files via a CDN or from an alternate server
 
 ## genversions
-The genversions command generates checkpointed versions of .js and .css files. It takes a single parameter (-path) that tells it the root of the
+The genversions command generates checkpointed versions of .js and .css files.  That is, if it finds a file called myapp.js, it will create a copy called myapp.abcdef1234567890.js, where the long string of hex is the MD5 checksum of the file. You can then serve multiple versions of your .js and .css files with long cache times, and if your html pages use the versioned names they will always get the version of the file they expect.
+
+It takes a single parameter (-path) that tells it the root of the
 tree it should operate on. If you do not specify a path it assumes the current directory.  Install with `go install github.com/philpearl/assets/genversions`
 
 You can run genversions from go generate. For example this is what we have in our test package
