@@ -32,7 +32,7 @@ var Statics http.Handler = http.StripPrefix("/static/", http.FileServer(assetFS(
 ```
 
 ## lib
-Code to help you serve up versioned files as created by genversions. At the moment it pretty much assumes you are using [github.com/elazarl/go-bindata-assetfs] to bundle your static files.
+Code to help you serve up versioned files as created by genversions. At the moment it pretty much assumes you are using github.com/elazarl/go-bindata-assetfs to bundle your static files.
 
 ```go
 
