@@ -1,5 +1,6 @@
 package test
 
+//go:generate genversions -path=data
 // This is from github.com/elazarl/go-bindata-assetfs
 //go:generate go-bindata-assetfs -prefix "data/" -pkg "test" data/...
 

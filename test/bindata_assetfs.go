@@ -77,7 +77,7 @@ func static_js_a1_78b86493ac2e9e54b60471852919ac10_js() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindata_file_info{name: "static/js/a1-78b86493ac2e9e54b60471852919ac10.js", size: 33, mode: os.FileMode(420), modTime: time.Unix(1435830065, 0)}
+	info := bindata_file_info{name: "static/js/a1-78b86493ac2e9e54b60471852919ac10.js", size: 33, mode: os.FileMode(420), modTime: time.Unix(1435833982, 0)}
 	a := &asset{bytes: bytes, info:  info}
 	return a, nil
 }
@@ -117,7 +117,7 @@ func static_js_behive_min_8c17f4c608db7de5fef12c54bbdf7783_js() (*asset, error) 
 		return nil, err
 	}
 
-	info := bindata_file_info{name: "static/js/behive.min-8c17f4c608db7de5fef12c54bbdf7783.js", size: 11, mode: os.FileMode(420), modTime: time.Unix(1435830065, 0)}
+	info := bindata_file_info{name: "static/js/behive.min-8c17f4c608db7de5fef12c54bbdf7783.js", size: 11, mode: os.FileMode(420), modTime: time.Unix(1435833982, 0)}
 	a := &asset{bytes: bytes, info:  info}
 	return a, nil
 }
