@@ -2,9 +2,10 @@ package lib
 
 import (
 	"bytes"
-	testdir "github.com/philpearl/assets/test"
 	"html/template"
 	"testing"
+
+	testdir "github.com/philpearl/assets/test"
 )
 
 func TestFindVersionedFiles(t *testing.T) {

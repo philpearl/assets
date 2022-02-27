@@ -1,14 +1,34 @@
 package test
 
-//go:generate genversions -path=data
-// This is from github.com/elazarl/go-bindata-assetfs
-//go:generate go-bindata-assetfs -prefix "data/" -pkg "test" data/...
-
 import (
+	"embed"
+	"fmt"
+	"io/fs"
 	"net/http"
 )
 
-var FileSystem http.FileSystem = assetFS()
-var Paths []string = AssetNames()
+//go:generate genversions -path=static
+//go:embed static
+var files embed.FS
 
-var Statics http.Handler = http.StripPrefix("/static/", http.FileServer(assetFS()))
+var (
+	FileSystem              = http.FS(files)
+	Statics    http.Handler = http.StripPrefix("/static/", http.FileServer(FileSystem))
+	Paths      []string     = assetNames()
+)
+
+func assetNames() []string {
+	var paths []string
+
+	fs.WalkDir(files, "static", func(path string, d fs.DirEntry, err error) error {
+		if err != nil {
+			return err
+		}
+		if !d.IsDir() {
+			paths = append(paths, path)
+		}
+		return nil
+	})
+	fmt.Println(paths)
+	return paths
+}

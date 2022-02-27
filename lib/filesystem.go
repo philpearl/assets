@@ -2,7 +2,6 @@ package lib
 
 import (
 	"fmt"
-	"io/ioutil"
 	"log"
 	"os"
 	"path/filepath"
@@ -31,9 +30,9 @@ func CreateVersionedFiles(root string) error {
 		}
 
 		// Lets work out the version number
-		data, err := ioutil.ReadFile(path)
+		data, err := os.ReadFile(path)
 		if err != nil {
-			return fmt.Errorf("Failed to read file %s. %v", path, err)
+			return fmt.Errorf("failed to read file %s. %w", path, err)
 		}
 		version := VersionNumberForFile(data)
 		newName := filepath.Join(dir, versionedName(filebase, ext, version))
@@ -46,14 +45,13 @@ func CreateVersionedFiles(root string) error {
 		}
 
 		if !os.IsNotExist(err) {
-			return fmt.Errorf("Couldn't access %s. %v", newName, err)
+			return fmt.Errorf("couldn't access %s. %w", newName, err)
 		}
 
 		// Versioned file does not exist, so we create it
 		log.Printf("genversions: create %s", newName)
-		err = ioutil.WriteFile(newName, data, info.Mode())
-		if err != nil {
-			return fmt.Errorf("Failed to write file %s. %v", newName, err)
+		if err := os.WriteFile(newName, data, info.Mode()); err != nil {
+			return fmt.Errorf("failed to write file %s. %w", newName, err)
 		}
 		return nil
 	})
